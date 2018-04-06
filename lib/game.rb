@@ -5,14 +5,21 @@ class Game
   def initialize name1, name2
     @player1 = Player.new name1
     @player2 = Player.new name2
+    @attacker = @player1
   end
 
   def attack_to
-    @player2.reduce_hp
+    @attacker.reduce_hp
+    switch_players
     self
   end
   
   def describe
     { player1: @player1.name, player2: @player2.name, hp1: @player1.hit_points, hp2: @player2.hit_points }
+  end
+
+private
+  def switch_players
+    @attacker = @attacker == @player1 ? @player2 : @player1
   end
 end

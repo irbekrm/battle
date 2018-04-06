@@ -19,5 +19,11 @@ describe 'the landing page', type: :feature  do
       click_button 'Attack!'
       expect(page).to have_content '90', '100'
     end
+
+    scenario 'Two sequential hits' do
+      sign_in_and_play
+      click_button 'Attack!'
+      expect(page).to have_content '90', '90'
+    end
   end  
 end

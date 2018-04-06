@@ -20,7 +20,8 @@ describe Game do
 
   describe '#attack_to' do
     it 'sends #reduce_hp to player' do
-      expect(@player2).to receive(:reduce_hp)
+      subject.instance_variable_set(:@attacker, @player1)
+      expect(@player1).to receive(:reduce_hp)
       subject.attack_to
     end
   end

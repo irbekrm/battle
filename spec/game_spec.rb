@@ -14,7 +14,7 @@ describe Game do
 
   describe '#describe' do
     it 'returns a hash with player info' do
-      expect(subject.describe).to eq({ player1: 'Anna', player2: 'Reinis', hp1: 50, hp2: 80 })
+      expect(subject.describe).to eq({ player1: 'Anna', player2: 'Reinis', hp1: 50, hp2: 80, message: ''})
     end
   end
 

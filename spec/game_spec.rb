@@ -7,6 +7,7 @@ describe Game do
     allow(@player1).to receive(:name) { 'Anna' }
     allow(@player1).to receive(:hit_points) { 50 }
     allow(@player2).to receive(:hit_points) { 80 }
+    allow(@player2).to receive(:reduce_hp) { self }
     allow(@player2).to receive(:name) { 'Reinis' }
     subject.instance_variable_set(:@player1, @player1)
     subject.instance_variable_set(:@player2, @player2)
@@ -15,14 +16,6 @@ describe Game do
   describe '#describe' do
     it 'returns a hash with player info' do
       expect(subject.describe).to eq({ player1: 'Anna', player2: 'Reinis', hp1: 50, hp2: 80, message: ''})
-    end
-  end
-
-  describe '#attack_to' do
-    it 'sends #reduce_hp to player' do
-      subject.instance_variable_set(:@attacker, @player1)
-      expect(@player1).to receive(:reduce_hp)
-      subject.attack_to
     end
   end
 end

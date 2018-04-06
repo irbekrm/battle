@@ -26,4 +26,8 @@ describe 'the landing page', type: :feature  do
       expect(page).to have_content '90', '90'
     end
   end  
+
+  #feature 'A player will eventually win' do
+  #  scenario 'Player1 starts' do
+  #  sign_in
 end

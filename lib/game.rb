@@ -2,18 +2,25 @@ require_relative './player.rb'
 
 class Game
 
+  attr_reader :winner
+
   def initialize name1, name2
     @player1 = Player.new name1
     @player2 = Player.new name2
-    @attacker = @player1
+    @attacker, @attacked = @player1, @player2
     @message = ''
+    @winner = ''
+  end
+
+  def self.game
+    self
   end
 
   def attack_to
-    @attacker.reduce_hp
+    (@winner = @attacker.name) && return if winner?
     @message = "#{@attacker.name} attacked!"
     switch_players
-    self
+    0
   end
   
   def describe
@@ -22,6 +29,10 @@ class Game
 
 private
   def switch_players
-    @attacker = @attacker == @player1 ? @player2 : @player1
+    @attacker, @attacked = @attacked, @attacker
+  end
+
+  def winner?
+    @attacked.reduce_hp.hit_points <= 0
   end
 end

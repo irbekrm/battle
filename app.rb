@@ -20,8 +20,12 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
-    $game.attack_to
-    redirect '/play'
+    res = $game.attack_to
+    redirect res == 0 ? '/play' : '/show_winner'
+  end
+
+  get '/show_winner' do
+    erb :winner, locals: { message: $game.winner }
   end
 
   run! if app_file == $0

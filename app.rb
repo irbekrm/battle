@@ -14,7 +14,10 @@ class Battle < Sinatra::Base
     redirect '/play'
   end
 
+
   get '/play' do
+    @player1_hit_points = 100
+    @player2_hit_points = 100
     @player1 = session['player1']
     @player2 = session['player2']
     erb :player

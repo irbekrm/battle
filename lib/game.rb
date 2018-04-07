@@ -10,10 +10,11 @@ class Game
     @attacker, @attacked = @player1, @player2
     @message = ''
     @winner = ''
+    @@game = self
   end
 
-  def self.game
-    self
+  def Game.get_game
+    @@game
   end
 
   def attack_to

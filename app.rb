@@ -10,22 +10,21 @@ class Battle < Sinatra::Base
   end
   
   post '/names' do
-    $game = Game.new params['player1'], params['player2']
+    Game.new params['player1'], params['player2']
     redirect '/play'
   end
 
 
   get '/play' do
-    erb :player, locals: $game.describe
+    erb :player, locals: Game.get_game.describe
   end
 
   post '/attack' do
-    res = $game.attack_to
-    redirect res == 0 ? '/play' : '/show_winner'
+    redirect Game.get_game.attack_to == 0 ? '/play' : '/show_winner'
   end
 
   get '/show_winner' do
-    erb :winner, locals: { message: $game.winner }
+    erb :winner, locals: { message: Game.get_game.winner }
   end
 
   run! if app_file == $0
